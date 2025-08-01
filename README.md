@@ -1,4 +1,4 @@
-##Predictive Maintenance for Aerospace Engines using Machine Learning
+Predictive Maintenance for Aerospace Engines using Machine Learning
 🚀 Project Overview
 This project demonstrates a comprehensive, end-to-end machine learning workflow for predicting the Remaining Useful Life (RUL) of turbofan engines. The goal is to move from reactive to predictive maintenance, enabling proactive repairs to reduce costs and prevent catastrophic failures.
 
@@ -6,7 +6,7 @@ The project involved a systematic progression of models, starting with a baselin
 
 This repository contains:
 
-The complete Jupyter Notebook (.ipynb) with the entire data processing and model training pipeline.
+The complete Google Colab Notebook (.ipynb) with the entire data processing and model training pipeline.
 
 A full-stack web application (Flask backend + HTML/JS frontend) to demonstrate the model's functionality.
 
