@@ -1,62 +1,94 @@
-# Predicitive-Maintenance-Project
-Predictive Maintenance for Turbofan Engines using Machine Learning
-Project Overview
-This project demonstrates an end-to-end machine learning pipeline for predictive maintenance. The primary goal is to predict the Remaining Useful Life (RUL) of turbofan engines based on their time-series sensor data. By accurately forecasting when an engine will fail, maintenance can be scheduled proactively, reducing operational costs and increasing safety.
+##Predictive Maintenance for Aerospace Engines using Machine Learning
+🚀 Project Overview
+This project demonstrates a comprehensive, end-to-end machine learning workflow for predicting the Remaining Useful Life (RUL) of turbofan engines. The goal is to move from reactive to predictive maintenance, enabling proactive repairs to reduce costs and prevent catastrophic failures.
 
-This repository contains the complete Jupyter Notebook with data loading, preprocessing, model training, and evaluation for two different machine learning models: XGBoost and a Long Short-Term Memory (LSTM) neural network.
+The project involved a systematic progression of models, starting with a baseline RandomForest, improving with XGBoost, and finally implementing a sequential LSTM network. Models were trained and validated on the NASA CMAPS datasets (FD001 and the more complex FD002) to ensure robustness.
 
-Dataset
-This project utilizes the NASA Turbofan Engine Degradation Simulation Dataset. It's a widely used benchmark dataset in the field of predictive maintenance.
+This repository contains:
 
-Source: NASA Prognostics Center of Excellence
+The complete Jupyter Notebook (.ipynb) with the entire data processing and model training pipeline.
 
-Description: The dataset contains multivariate time-series data from 100 turbofan engines under normal-to-failure operating conditions. Each engine starts with a different degree of initial wear and manufacturing variation, but all are of the same type. The data includes 21 sensor readings, 3 operational settings, and the time in cycles.
+A full-stack web application (Flask backend + HTML/JS frontend) to demonstrate the model's functionality.
 
-Methodology
-The project follows a structured machine learning workflow:
+The saved, trained model file (rul_model.pkl).
 
-Data Loading & Cleaning: The raw .txt data is loaded into a pandas DataFrame, and appropriate column names are assigned. Any empty or irrelevant columns are dropped.
+🔧 Technical Stack
+Languages: Python
 
-Feature Engineering: The crucial target variable, Remaining Useful Life (RUL), is calculated. This is done by determining the final operational cycle for each engine and then computing how many cycles remain at each point in its history.
+Libraries: pandas, scikit-learn, XGBoost, TensorFlow/Keras, joblib
 
-Exploratory Data Analysis (EDA): Sensor data is visualized to identify trends and patterns as the engines approach failure. This step confirms that the sensor readings contain predictive signals.
+Web Framework: Flask
 
-Data Preprocessing:
+Frontend: HTML, Tailwind CSS, JavaScript
 
-Feature Selection: Sensor columns with no variance (constant values) are identified and removed.
+📈 Key Results & Performance
+The models were evaluated using the R-squared (R²) metric. Higher is better. The progression of model performance clearly shows the impact of using more advanced algorithms and feature engineering.
 
-Scaling: All feature values are normalized to a range between 0 and 1 using MinMaxScaler. This is a critical step for the optimal performance of neural networks.
+Model
 
-Models and Results
-Two models were built to predict the RUL:
+Dataset (Complexity)
 
-1. XGBoost (Baseline Model)
-A powerful gradient boosting model was used to establish a strong performance baseline.
+R² Score
 
-Purpose: To provide a benchmark against which the more complex deep learning model can be compared.
+RandomForest (Baseline)
 
-Result: Achieved an RMSE of [Enter your XGBoost RMSE here, e.g., 25.43].
+FD001 (Simple)
 
-2. Long Short-Term Memory (LSTM) Network (AI Model)
-An LSTM, a type of Recurrent Neural Network (RNN), was built to capture temporal dependencies in the time-series data.
+65%
 
-Architecture: The model consists of two LSTM layers with Dropout for regularization, followed by a Dense output layer.
+XGBoost (Optimized)
 
-Why LSTM? LSTMs are specifically designed to learn from sequences, making them ideal for understanding the degradation patterns in sensor data over time.
+FD001 (Simple)
 
-Result: Achieved an RMSE of [Enter your LSTM RMSE here, e.g., 18.91]. The lower RMSE indicates a superior predictive performance compared to the baseline.
+87%
 
-How to Use
-Clone the Repository:
+LSTM
 
-git clone https://github.com/your-username/your-repository-name.git
+FD001 (Simple)
 
-Open in Google Colab:
+86%
 
-Upload the .ipynb notebook file to Google Colab.
+XGBoost (Optimized)
 
-The notebook includes commands to download the dataset directly from Kaggle, so no manual download is required.
+FD002 (Complex)
 
-Run the Cells:
+73%
 
-Execute the cells sequentially from top to bottom. The notebook is self-contained and will handle all dependencies, data preparation, model training, and evaluation.
+LSTM
+
+FD002 (Complex)
+
+71%
+
+Conclusion: The optimized XGBoost model with advanced feature engineering provided the best performance on both datasets, demonstrating its robustness. The LSTM also performed at a high level, confirming that sequential models are a strong alternative for this type of time-series data.
+
+💻 How to Run the Web Application
+1. Prerequisites
+Python 3.x
+
+Git
+
+2. Setup
+Clone the repository and install the required packages.
+
+# Clone the repository
+git clone https://github.com/your-username/Predictive-Maintenance-Project.git
+cd Predictive-Maintenance-Project
+
+# Create and activate a virtual environment (recommended)
+python -m venv .venv
+source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+
+# Install dependencies
+pip install flask flask-cors joblib numpy pandas scikit-learn xgboost
+
+3. Run the Application
+You need to run the Flask backend server.
+
+# From the project's root directory
+python app.py
+
+The server will start on http://127.0.0.1:5000.
+
+4. Use the Predictor
+Open your web browser and navigate to http://127.0.0.1:5000. You can now input sensor values to get a live RUL prediction from the model.
